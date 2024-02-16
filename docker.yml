@@ -9,7 +9,6 @@ services:
             - '8085:8080'
         networks:
             - dataworld
-        user: "${UID}:${GID}"
         volumes:
             - airflow-data:/usr/local/airflow/data
             - ./airflow/logs:/usr/local/airflow/logs
