@@ -1,11 +1,10 @@
-version: "3"
 services:
 
     # scheduler & monitoring service
     airflow-webserver:
         hostname: myairflow
         container_name: airflow_container
-        image: 'puckel/docker-airflow'  # Using latest image
+        image: 'puckel/docker-airflow:latest'
         ports:
             - '8085:8080'
         networks:
@@ -15,6 +14,7 @@ services:
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
             - ./airflow/requirements/requirements.txt:/requirements.txt
+        command: "sh -c 'chmod -R 777 /usr/local/airflow/logs && airflow webserver'" 
         restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
@@ -26,7 +26,7 @@ services:
     zookeeper:
         hostname: myzookeeper
         container_name: zookeeper_container
-        image: 'bitnami/zookeeper'  # Using latest image
+        image: 'bitnami/zookeeper:latest'
         environment:
             - ALLOW_ANONYMOUS_LOGIN=yes
         networks:
@@ -37,7 +37,7 @@ services:
     nifi:
         hostname: mynifi
         container_name: nifi_container
-        image: 'apache/nifi'  # Using latest image
+        image: 'apache/nifi:latest'
         ports:
             - '8091:8080'
         networks:
@@ -70,7 +70,7 @@ services:
     registry:
         hostname: myregistry
         container_name: registry_container
-        image: 'apache/nifi-registry'  # Using latest image
+        image: 'apache/nifi-registry:latest'
         restart: on-failure
         ports:
             - "18080:18080"
@@ -94,7 +94,8 @@ services:
     postgres:
         hostname: mypostgres
         container_name: postgres_container
-        image: 'postgres'  # Using latest image
+        user: postgres
+        image: 'postgres:latest'
         environment:
             POSTGRES_USER: 'postgres'
             POSTGRES_PASSWORD: 'postgres'
@@ -111,12 +112,11 @@ services:
             interval: 30s
             timeout: 20s
             retries: 3
-
     # database administration tool
     pgadmin:
         hostname: mypgadmin
         container_name: pgadmin_container
-        image: 'dpage/pgadmin4'  # Using latest image
+        image: 'dpage/pgadmin4:latest'
         environment:
             PGADMIN_DEFAULT_EMAIL: 'pgadmin4@pgadmin.org'
             PGADMIN_DEFAULT_PASSWORD: 'admin'
@@ -138,7 +138,7 @@ services:
     minio:
         hostname: myminio
         container_name: minio_container
-        image: 'bitnami/minio'  # Using latest image
+        image: 'bitnami/minio:latest'
         environment:
             MINIO_ACCESS_KEY: minio_admin
             MINIO_SECRET_KEY: minio_password
