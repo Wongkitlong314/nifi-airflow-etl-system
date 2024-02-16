@@ -9,12 +9,12 @@ services:
             - '8085:8080'
         networks:
             - dataworld
+        user: "${UID}:${GID}"
         volumes:
             - airflow-data:/usr/local/airflow/data
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
             - ./airflow/requirements/requirements.txt:/requirements.txt
-        command: "sh -c 'chmod -R 777 /usr/local/airflow/logs && airflow webserver'" 
         restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
