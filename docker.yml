@@ -14,7 +14,7 @@ services:
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
             - ./airflow/requirements/requirements.txt:/requirements.txt
-        command: "sudo chmod -R 777 ./airflow/"
+        command: "sudo chmod -R 777 airflow/"
         restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
@@ -82,7 +82,7 @@ services:
         volumes:
             - ./nifi_registry/database:/opt/nifi-registry/nifi-registry-current/database
             - ./nifi_registry/flow_storage:/opt/nifi-registry/nifi-registry-current/flow_storage
-        command: "sudo chmod -R 777 ./nifi-registry/"
+        command: "sudo chmod -R 777 nifi-registry/"
         networks:
             - dataworld
         healthcheck:
