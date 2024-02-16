@@ -13,7 +13,7 @@ services:
             - airflow-data:/usr/local/airflow/data
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
-            - ./airflow/requirements/requirements.txt:/requirements.txt
+            # - ./airflow/requirements/requirements.txt:/requirements.txt
         restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
