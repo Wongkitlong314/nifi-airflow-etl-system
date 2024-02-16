@@ -95,7 +95,7 @@ services:
     postgres:
         hostname: mypostgres
         container_name: postgres_container
-        user: 1000:1000
+        user: user
         image: 'postgres:latest'
         environment:
             POSTGRES_USER: 'postgres'
