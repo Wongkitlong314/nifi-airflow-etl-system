@@ -96,7 +96,7 @@ services:
         hostname: mypostgres
         container_name: postgres_container
         user: user
-        image: 'postgres:latest'
+        image: postgres:12-alpine
         environment:
             POSTGRES_USER: 'postgres'
             POSTGRES_PASSWORD: 'postgres'
