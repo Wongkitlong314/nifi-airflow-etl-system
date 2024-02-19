@@ -1,3 +1,14 @@
+#this docker-compose yml file is base on a medium tutorial with some modification to handle error 
+#reference: https://towardsdatascience.com/how-to-build-a-data-lake-from-scratch-part-1-the-setup-34ea1665a06e 
+#source: https://gist.github.com/CribberSix/bfc8d6fdb30660467305f8e4288f213e
+
+# after docker-compose up configs:
+# Apache NiFi — http://localhost:8091/nifi/
+# Apache NiFi Registry — http://localhost:18080/nifi-registry/
+# Apache Airflow — http://localhost:8085/admin/
+# pgAdmin — http://localhost:5050/browser/
+# minIO — http://localhost:9000/ 
+
 services:
 
     # scheduler & monitoring service
@@ -100,6 +111,7 @@ services:
         hostname: mypostgres
         container_name: postgres_container
         image: 'postgres:14-bullseye'
+        # user: 'postgres'
         environment:
             POSTGRES_USER: 'postgres'
             POSTGRES_PASSWORD: 'postgres'
@@ -173,3 +185,4 @@ volumes:
 networks:
     dataworld:
         driver: bridge
+
