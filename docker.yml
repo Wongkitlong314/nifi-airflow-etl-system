@@ -114,7 +114,7 @@ services:
           POSTGRES_PASSWORD: airflow
           POSTGRES_DB: airflow
         volumes:
-          - postgres-db-volume:/var/lib/postgresql/data
+          - postgres:/var/lib/postgresql/data
         ports:
           - 5432:5432
         networks:
@@ -199,9 +199,8 @@ volumes:
     nifi-provenance_repository:
     nifi-state:
     nifi-conf:
-    # postgres:
+    postgres:
     pgadmin:
-    postgres-db-volume:
 
 networks:
     dataworld:
