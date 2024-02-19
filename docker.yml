@@ -19,7 +19,6 @@ services:
             if [ ! -e ./airflow/requirements/requirements.txt ]; then
                 touch ./airflow/requirements/requirements.txt;
             fi;
-            sudo chmod -R 777 ./airflow/;
             airflow webserver"
         restart: on-failure
         healthcheck:
@@ -88,7 +87,6 @@ services:
         volumes:
             - ./nifi_registry/database:/opt/nifi-registry/nifi-registry-current/database
             - ./nifi_registry/flow_storage:/opt/nifi-registry/nifi-registry-current/flow_storage
-        command: "sudo chmod -R 777 ./nifi-registry/"
         networks:
             - dataworld
         healthcheck:
