@@ -13,7 +13,7 @@ services:
             - airflow-data:/usr/local/airflow/data
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
-            - ./airflow/requirements/requirements.txt:/requirements.txt
+            - ./airflow/requirements:/usr/local/airflow/requirements
         command: >
             bash -c "
             if [ ! -e ./airflow/requirements/requirements.txt ]; then
