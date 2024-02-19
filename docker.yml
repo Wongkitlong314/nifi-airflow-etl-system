@@ -113,8 +113,10 @@ services:
         image: 'postgres:14-bullseye'
         # user: 'postgres'
         environment:
-            POSTGRES_USER: 'postgres'
-            POSTGRES_PASSWORD: 'postgres'
+            # POSTGRES_USER: 'postgres'
+            # POSTGRES_PASSWORD: 'postgres'
+            POSTGRES_USER: 'root'
+            POSTGRES_PASSWORD: 'root'
             PGDATA: /data/postgres
         volumes:
             - postgres:/data/postgres
