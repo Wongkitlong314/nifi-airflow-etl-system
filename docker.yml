@@ -99,7 +99,7 @@ services:
     postgres:
         hostname: mypostgres
         container_name: postgres_container
-        image: postgres:14-bullseye
+        image: 'postgres:14-bullseye'
         environment:
             POSTGRES_USER: 'postgres'
             POSTGRES_PASSWORD: 'postgres'
