@@ -21,7 +21,7 @@ services:
             fi;
             sudo chmod -R 777 ./airflow/;
             airflow webserver"
-            restart: on-failure
+        restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
             interval: 30s
