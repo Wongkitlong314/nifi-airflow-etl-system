@@ -13,7 +13,7 @@ services:
             - airflow-data:/usr/local/airflow/data
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
-            # - ./airflow/requirements/requirements.txt:/requirements.txt
+            - ./airflow/requirements/requirements.txt:/requirements.txt
         # command: "sudo chmod -R 777 airflow/"
         restart: on-failure
         healthcheck:
