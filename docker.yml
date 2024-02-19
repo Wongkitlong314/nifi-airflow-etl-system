@@ -14,8 +14,14 @@ services:
             - ./airflow/logs:/usr/local/airflow/logs
             - ./airflow/dags:/usr/local/airflow/dags
             - ./airflow/requirements/requirements.txt:/requirements.txt
-        command: "sudo chmod -R 777 ./airflow/"
-        restart: on-failure
+        command: >
+            bash -c "
+            if [ ! -e ./airflow/requirements/requirements.txt ]; then
+                touch ./airflow/requirements/requirements.txt;
+            fi;
+            sudo chmod -R 777 ./airflow/;
+            airflow webserver"
+            restart: on-failure
         healthcheck:
             test: ["CMD", "curl", "-f", "http://myairflow:8080/admin/"]
             interval: 30s
