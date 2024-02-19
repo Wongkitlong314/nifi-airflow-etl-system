@@ -111,12 +111,10 @@ services:
         hostname: mypostgres
         container_name: postgres_container
         image: 'postgres:14-bullseye'
-        # user: 'postgres'
+        user: 'postgres'
         environment:
-            # POSTGRES_USER: 'postgres'
-            # POSTGRES_PASSWORD: 'postgres'
-            POSTGRES_USER: 'root'
-            POSTGRES_PASSWORD: 'root'
+            POSTGRES_USER: 'postgres'
+            POSTGRES_PASSWORD: 'postgres'
             PGDATA: /data/postgres
         volumes:
             - postgres:/data/postgres
